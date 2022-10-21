@@ -14,27 +14,48 @@ def get_dataframe(rv_list, column_name):
 # def get_dataframe_list()
 
 
-def plot_histogram(rv_list, chart_name, save=True, color_theme="#4c78a8"):
-    """Plot a r.v. histogram."""
+def plot_density(
+    rv_list,
+    chart_name,
+    save=True,
+    color_theme="#4c78a8",
+    supp_min=0,
+    supp_max=0,
+):
+    """Plot a r.v. density."""
     rv_df = get_dataframe(rv_list, [f"{chart_name}_rv"])
+    if supp_min == 0:
+        supp_min = rv_list.min()
+    else:
+        pass
+    if supp_max == 0:
+        supp_max = rv_list.max()
+    else:
+        pass
 
     df_chart = (
         alt.Chart(rv_df, title=chart_name)
+        .transform_density(
+            f"{chart_name}_rv",
+            as_=[f"{chart_name}_rv", "density"],
+        )
         .mark_bar()
         .encode(
             alt.X(
                 f"{chart_name}_rv",
                 bin=alt.Bin(
-                    extent=[round(rv_list.min()), round(rv_list.max())],
+                    extent=[round(supp_min), round(supp_max)],
+                    step=0.5,
                 ),
                 title="values",
             ),
-            alt.Y("count()", title="frequency"),
+            alt.Y(
+                "density:Q",
+                title=None,
+                # axis=None,
+            ),  # scale=alt.Scale(domain=[0, 1])),
             color=alt.ColorValue(color_theme),
         )
-        #
-        # .configure_axis(titleFontSize=20, labelFontSize=20)
-        # .configure_title(fontSize=20)
     )
 
     if save:
@@ -43,9 +64,8 @@ def plot_histogram(rv_list, chart_name, save=True, color_theme="#4c78a8"):
         return df_chart
 
 
-def plot_histogram_nparams(rv_list, param_list, chart_name):
-    """Plot a r.v. histograms with different parameters."""
-    # df_list = []
+def plot_density_nparams(rv_list, param_list, chart_name):
+    """Plot a r.v. density with different parameters."""
 
     list_colors = [
         "#4c78a8",
@@ -67,28 +87,51 @@ def plot_histogram_nparams(rv_list, param_list, chart_name):
         string_parameters = ""
         for p in range(len(param)):
             string_parameters += "_" + letters[p] + "=" + str(param[p]) + "_"
-            print(string_parameters)
         string_list.append(string_parameters)
 
-    # for i, rv in enumerate(rv_list):
-    #     df_list.append(get_dataframe(rv, [f"{chart_name}_rv (a = {param_list[i]})"]))
+    supp_min = 0
+    supp_max = 0
+    for df_rv in rv_list:
+
+        supp_min = min(min(df_rv), supp_min)
+        supp_max = max(max(df_rv), supp_max)
 
     chart_list = []
     for i, df_rv in enumerate(rv_list):
-        print(f"{string_list[i]}")
-        print(type(string_list[i]))
         chart_list.append(
-            plot_histogram(
+            plot_density(
                 df_rv,
                 f"{string_list[i]}",
                 save=False,
                 color_theme=list_colors[i],
+                supp_min=supp_min,
+                supp_max=supp_max,
             )
         )
 
     # return chart_list
-    chart_total = chart_list[0]
-    for chart_in_list in chart_list[1:]:
-        chart_total = chart_total | chart_in_list
+    chart_total = []
+    for char_nr in range(round(len(chart_list) / 3)):
+        chart_total.append(chart_list[char_nr * 3])
 
-    chart_total.save(f"{chart_name}_" + chart_name + ".html")
+    for j, chart_in_list in enumerate(chart_list):
+        if j <= 2 and j > 0:
+            chart_total[0] = alt.hconcat(chart_total[0], chart_in_list).resolve_scale(
+                y="shared"
+            )
+        elif j > 3 and j <= 5:
+            chart_total[1] = alt.hconcat(chart_total[1], chart_in_list).resolve_scale(
+                y="shared"
+            )
+        elif j > 6 and j <= 8:
+            chart_total[2] = alt.hconcat(chart_total[2], chart_in_list).resolve_scale(
+                y="shared"
+            )
+        else:
+            pass
+
+    char_final = chart_total[0]
+    for char_f in chart_total[1:]:
+        char_final = alt.vconcat(char_final, char_f).resolve_scale(y="shared")
+
+    char_final.save(f"{chart_name}_" + chart_name + ".html")

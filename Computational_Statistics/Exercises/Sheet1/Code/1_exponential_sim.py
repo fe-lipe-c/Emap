@@ -48,5 +48,19 @@ for param in range(len(a)):
 # plot_histogram(u, "uniform_rv", "uniform")
 plot_histogram_nparams(exp_truncated_alt_list, zip(a, b), "exp_truncated_alt_rv")
 
-for i in zip(a, b):
-    print(i)
+
+# Test
+
+exp_trunc_rv_1 = exp_truncated(lambda_, 1, u)
+
+exp_trunc_rv + exp_trunc_rv_1
+exp_trunc_rv_1
+
+# array([5.96734726, 2.53192025, 3.43790101, ..., 5.2262491 , 2.07617501,
+#        2.09963789])
+
+# array([2.98367363, 1.26596013, 1.71895051, ..., 2.61312455, 1.0380875 ,
+#        1.04981894])
+
+# array([2.98367363, 1.26596013, 1.71895051, ..., 2.61312455, 1.0380875 ,
+#        1.04981894])

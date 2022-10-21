@@ -14,9 +14,17 @@ def get_dataframe(rv_list, column_name):
 # def get_dataframe_list()
 
 
-def plot_histogram(rv_list, chart_name, save=True, color_theme="#4c78a8"):
+def plot_histogram(
+    rv_list, chart_name, save=True, color_theme="#4c78a8", supp_min=True, supp_max=True
+):
     """Plot a r.v. histogram."""
     rv_df = get_dataframe(rv_list, [f"{chart_name}_rv"])
+    if supp_min == True:
+        supp_min = round(rv_list.min())
+    else:
+        pass
+    if supp_max == True:
+        supp_max = round(rv_list.max())
 
     df_chart = (
         alt.Chart(rv_df, title=chart_name)
@@ -25,7 +33,7 @@ def plot_histogram(rv_list, chart_name, save=True, color_theme="#4c78a8"):
             alt.X(
                 f"{chart_name}_rv",
                 bin=alt.Bin(
-                    extent=[round(rv_list.min()), round(rv_list.max())],
+                    extent=[supp_min, supp_max],
                 ),
                 title="values",
             ),
@@ -72,17 +80,23 @@ def plot_histogram_nparams(rv_list, param_list, chart_name):
 
     # for i, rv in enumerate(rv_list):
     #     df_list.append(get_dataframe(rv, [f"{chart_name}_rv (a = {param_list[i]})"]))
+    supp_min = 0
+    supp_max = 0
+    for i, df_rv in enumerate(rv_list):
+
+        supp_min = min(min(rv_list), supp_min)
+        supp_max = max(max(rv_list), supp_max)
 
     chart_list = []
     for i, df_rv in enumerate(rv_list):
-        print(f"{string_list[i]}")
-        print(type(string_list[i]))
         chart_list.append(
             plot_histogram(
                 df_rv,
                 f"{string_list[i]}",
                 save=False,
                 color_theme=list_colors[i],
+                supp_min=supp_min,
+                supp_max=supp_max,
             )
         )
 

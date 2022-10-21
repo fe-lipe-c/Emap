@@ -77,3 +77,35 @@ $$
 **(b)** $X|Y \sim$ Normal$(0,Y)$, $Y \sim$ Gamma$(a,b) \implies X \sim$ Generalised-t;
 > Solution
 
+teste
+
+$F _{X}(x) = 1 - e ^{-\lambda x}$
+
+Inverse
+$$
+\begin{equation*}
+\begin{split}
+	u = 1 - e ^{-\lambda x} \implies u -1 = - e ^{- \lambda x}\\
+	\ln{(1-u)} = - \lambda x \implies x = - \frac{1}{\lambda} \ln{(1-u)}
+\end{split}
+\end{equation*}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end code
