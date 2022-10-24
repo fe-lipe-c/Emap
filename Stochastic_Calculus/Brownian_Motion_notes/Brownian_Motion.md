@@ -7,8 +7,10 @@
 **1.2 Definition** A d-dimensional Brownian motion $B= (B_{t})_{t\geq 0}$ is a stochastic process indexed by $[0,\infty)$ taking values in $\mathbb{R}^{d}$ such that
 
 1. $B_0(\omega) = 0$ for $\mathbb{P}$ almost all $\omega$;
-2. timeHMS
-3. t
+2. $B _{t _{n}} - B _{t _{n-1}} , \dots , B _{t _{1}} - B _{t _{0}}$ are independent for all $n \geq 1, 0 = t _{0} \leq t _{1} < t _{2} \cdots < t _{n} < \infty$;
+3. $B _{t} - B _{s} \sim B _{t+h} - B _{s +h}$ for all $0 \leq s < t, h \geq -s$;
+4. $B _{t}- B _{s} \sim N(0,t-s)^{\otimes d}$, $N (0,t)(dx) = \frac{1}{\sqrt{2 \pi t}}\exp{\left(-\frac{x ^{2}}{2t}\right)dx}$;
+5. $t \mapsto B _{t} (\omega)$ is continuous for all $\omega$.
 
 ## 15. Stochastic integrals: $L ^{2}$-Theory
 
@@ -104,7 +106,7 @@ $$
 
 ### 15.2. Simple Integrands
 
-Throuhghout the rest of this chapter $(B _{t})_{t \geq 0}$ is BM ^{1}, $(\mathcal{F}_{t})_{t \geq 0}$ is an admissible filstration such that each $\mathcal{letter}_{t}$ contains all $\mathbb{P}$-null sets, and $[0,T]$, $T < \infty$, a finite interval.
+Throughout the rest of this chapter $(B _{t})_{t \geq 0}$ is BM$^{1}$, $(\mathcal{F}_{t})_{t \geq 0}$ is an admissible filtration such that each $\mathcal{F}_{t}$ contains all $\mathbb{P}$-null sets, and $[0,T]$, $T < \infty$, a finite interval.
 1. $X ^{\tau}$ and $X _{s}^{\tau} = X _{\tau \wedge t}$ for the stopped process $(X _{t})_{t \geq 0}$;
 2. $\mathcal{M}^{2}_{T}$ for the family of $\mathcal{F}^{t}$ martingales $(M _{t})_{0 \leq t \leq T} \subset L ^{2}(\mathbb{P})$;
 3. $\mathcal{M}^{2,c}_{T}$ for the $L ^{2}$ martingales with (almost surely) continuous sample paths;
@@ -150,7 +152,16 @@ is called the stochastic integral of $f \in \mathcal{S}_{T}$. Instead of $f \cdo
 ----------
 **15.10 Theorem** 
 
-Let
+Let $(B _{t})_{t \geq 0}$ be a BM$^{1}$, $(M _{t})_{t \leq T } \in \mathcal{M}_{T}^{2,c}$, $(\mathcal{F}_{t})_{t \geq 0}$ be an admissible filtration and $f \in \mathcal{S}_{T}$. Then
+1. $f \mapsto f \cdot M _{T} \in L ^{2}(\mathbb{P})$ is linear;
+2. $\langle f \cdot B \rangle _{T} = f ^{2} \cdot \langle B \rangle _{T} = \int_{0}^{T}|f (s)| ^{2}ds$;
+3. Ito's isometry - $L ^{2}$-continuity. For all $f \in \mathcal{S}_{T}$
+$$
+\begin{equation*}
+	||f \cdot B _{T} ||_{L ^{2}(\mathbb{P})}^{2} = \mathbb{E} [(f \cdot B)_{T}^{2}] = \mathbb{E}  \tag{15.16}
+\end{equation*}
+$$
+
 
 
 > $\blacktriangleright$
