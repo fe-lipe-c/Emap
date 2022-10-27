@@ -36,7 +36,7 @@ $$
 	\mathbb{V}[X _{t +h} - X _{t}] = \mathbb{V} \left[\frac{1}{c}B _{(t+h)c ^{2}} - \frac{1}{c}B _{t c ^{2}}\right] = \frac{1}{c^2} \mathbb{V}[B _{(t+h)c ^{2}} - B _{t c ^{2}}] = \frac{1}{c^2}[ (t+h)c ^{2} - tc ^{2}] = h
 \end{align*}
 $$
-Item 3 is a direct consequence of the fact that $X _{t+h} - X _{t} \sim N(0,h)$.
+Item 3 is a direct consequence of the fact that $X _{t+h} - X _{t} \sim N(0,h)$, for every $t,h >0$.
 
 Finally, for the fifth item, $B _{t}$ is continuous for all $\omega$, so $\frac{1}{c}B _{tc ^{2}}$ is continuous for all $\omega$.
 
