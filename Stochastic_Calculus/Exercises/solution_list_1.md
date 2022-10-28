@@ -88,6 +88,40 @@ $$
 $$
 
 
+----------
+**4. Find $\mathbb{P} (B _{r} \leq B _{s} \leq B _{t})$ for $0 < r < s< t$.** 
+
+> Solution
+
+Let $0 < r < s < t$. Then
+$$
+\begin{align*}
+	\mathbb{P} (B _{r} \leq B _{s} \leq B _{t}) &= \mathbb{P} (B _{r} - B _{s}\leq 0 \leq B _{t} - B _{s}) = \mathbb{P}(B _{r} - B _{s} \leq 0, B _{t} - B _{s} \geq 0)\\
+	&= \mathbb{P} (B _{s}- B _{r} > 0, B _{t} - B _{s} \geq 0)
+\end{align*}
+$$
+Since $B _{s} - B _{r}$ and $B _{t} - B _{s}$ are independent, we have
+$$
+\begin{align*}
+	\mathbb{P} (B _{r} \leq B _{s} \leq B _{t} ) &= \mathbb{P} (B _{s}- B _{r} > 0) \mathbb{P} (B _{t} - B _{s} \geq 0) \\
+	&= [1 - \mathbb{P} (B _{s}- B _{r} \leq 0)] [1 - \mathbb{P} (B _{t} - B _{s} < 0)]
+\end{align*}
+$$
+Using the fact that $B _{s} - B _{r} \sim N (0,s-r)$ and $B _{t} - B _{s} \sim N (0, t-s)$, we have
+$$
+\begin{align*}
+	\mathbb{P} (B _{r} \leq B _{s} \leq B _{t} ) &= [1 - \Phi \left(\frac{0}{\sqrt{s-r}}\right)] [1 - \Phi \left(\frac{0}{\sqrt{t-s}}\right)]\\
+\end{align*}
+$$
+
+----------
+**5. Compute \mathbb{E}[B _{r}B _{s}B _{t}], for 0 < r< s< t.** 
+
+>Solution
+
+
+
+
 
 
 
