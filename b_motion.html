@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-52c270ee27ec973aa965dbd72f16a331"}, "mark": "line", "encoding": {"x": {"field": "Bt", "type": "quantitative"}, "y": {"field": "index", "type": "quantitative"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-52c270ee27ec973aa965dbd72f16a331": [{"Bt": 0, "index": 0}, {"Bt": -1, "index": 1}, {"Bt": -2, "index": 2}, {"Bt": -3, "index": 3}, {"Bt": -2, "index": 4}, {"Bt": -3, "index": 5}, {"Bt": -2, "index": 6}, {"Bt": -1, "index": 7}, {"Bt": -2, "index": 8}, {"Bt": -1, "index": 9}, {"Bt": -2, "index": 10}, {"Bt": -1, "index": 11}, {"Bt": 0, "index": 12}, {"Bt": 1, "index": 13}, {"Bt": 2, "index": 14}, {"Bt": 3, "index": 15}, {"Bt": 2, "index": 16}, {"Bt": 3, "index": 17}, {"Bt": 2, "index": 18}, {"Bt": 1, "index": 19}, {"Bt": 2, "index": 20}, {"Bt": 3, "index": 21}, {"Bt": 4, "index": 22}, {"Bt": 5, "index": 23}, {"Bt": 6, "index": 24}, {"Bt": 5, "index": 25}, {"Bt": 6, "index": 26}, {"Bt": 5, "index": 27}, {"Bt": 4, "index": 28}, {"Bt": 3, "index": 29}, {"Bt": 2, "index": 30}, {"Bt": 3, "index": 31}, {"Bt": 4, "index": 32}, {"Bt": 5, "index": 33}, {"Bt": 4, "index": 34}, {"Bt": 5, "index": 35}, {"Bt": 6, "index": 36}, {"Bt": 5, "index": 37}, {"Bt": 6, "index": 38}, {"Bt": 5, "index": 39}, {"Bt": 4, "index": 40}, {"Bt": 3, "index": 41}, {"Bt": 2, "index": 42}, {"Bt": 3, "index": 43}, {"Bt": 2, "index": 44}, {"Bt": 3, "index": 45}, {"Bt": 2, "index": 46}, {"Bt": 1, "index": 47}, {"Bt": 2, "index": 48}, {"Bt": 3, "index": 49}, {"Bt": 2, "index": 50}, {"Bt": 3, "index": 51}, {"Bt": 4, "index": 52}, {"Bt": 5, "index": 53}, {"Bt": 6, "index": 54}, {"Bt": 7, "index": 55}, {"Bt": 6, "index": 56}, {"Bt": 5, "index": 57}, {"Bt": 6, "index": 58}, {"Bt": 7, "index": 59}, {"Bt": 6, "index": 60}, {"Bt": 7, "index": 61}, {"Bt": 8, "index": 62}, {"Bt": 7, "index": 63}, {"Bt": 8, "index": 64}, {"Bt": 7, "index": 65}, {"Bt": 6, "index": 66}, {"Bt": 7, "index": 67}, {"Bt": 8, "index": 68}, {"Bt": 9, "index": 69}, {"Bt": 8, "index": 70}, {"Bt": 7, "index": 71}, {"Bt": 8, "index": 72}, {"Bt": 7, "index": 73}, {"Bt": 8, "index": 74}, {"Bt": 7, "index": 75}, {"Bt": 6, "index": 76}, {"Bt": 5, "index": 77}, {"Bt": 6, "index": 78}, {"Bt": 7, "index": 79}, {"Bt": 6, "index": 80}, {"Bt": 7, "index": 81}, {"Bt": 8, "index": 82}, {"Bt": 7, "index": 83}, {"Bt": 6, "index": 84}, {"Bt": 7, "index": 85}, {"Bt": 6, "index": 86}, {"Bt": 7, "index": 87}, {"Bt": 6, "index": 88}, {"Bt": 5, "index": 89}, {"Bt": 6, "index": 90}, {"Bt": 7, "index": 91}, {"Bt": 6, "index": 92}, {"Bt": 7, "index": 93}, {"Bt": 6, "index": 94}, {"Bt": 5, "index": 95}, {"Bt": 4, "index": 96}, {"Bt": 5, "index": 97}, {"Bt": 4, "index": 98}, {"Bt": 3, "index": 99}, {"Bt": 4, "index": 100}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

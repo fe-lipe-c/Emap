@@ -43,3 +43,53 @@ Finally, for the fifth item, $B _{t}$ is continuous for all $\omega$, so $\frac{
 ----------
 **2. Let $(W _{t})_{t \geq 0}$ be another Brownian motion independent of $B$. Prove that for any $\rho \in [-1,1]$, the process $\rho B _{t} + \sqrt{1 - \rho ^{2}}W _{t}$ is also a Brownian motion.**
 > Solution
+
+
+----------
+**3. Let $X _{t} = B _{t} - t B _{1}$, for $0 \leq t \leq 1$. This process is called *Brownian Bridge*. Compute the mean and covariance functions of $X$. What is the distribution of $X _{t}$?** 																									
+> Solution
+
+Let's compute the mean and covariance of $X$:
+
+`mean`
+$$
+\begin{align*}
+	&\mathbb{E}[X _{t}] = \mathbb{E}[B _{t}- t B _{1}] = \mathbb{E}[B _{t}] - t\mathbb{E}[B _{1}] = 0
+\end{align*}
+$$
+`variance`
+$$
+\begin{align*}
+	\mathbb{V}[X _{t}] &= \mathbb{E}[(B _{t} - t B _{1})^{2}] = \mathbb{E}[B _{t}^{2} + t ^{2}B _{1}^{2} - 2 tB _{t}B _{1}] \\
+	&= t + t ^{2} - 2t \mathbb{E}[B _{t}B _{1}] = t + t ^{2} - 2t \mathbb{E}[(B _{1} - B _{t} + B _{t})B _{t}]\\
+	&= t + t ^{2} - 2t \mathbb{E}[(B _{1}- B _{t})B _{t} + B _{t}^{2}] = t + t ^{2} - 2t \mathbb{E}[(B _{1}- B _{t})B _{t}] - 2t ^{2}\\
+	&= t - t ^{2} = t (1-t)
+	
+\end{align*}
+$$
+`covariance`
+
+For any $0 \leq s < t \leq 1$
+$$
+\begin{align*}
+	\scriptsize Cov (X _{s}, X _{t})
+	&\scriptsize= \mathbb{E}[X _{s}X _{t}]
+	= \mathbb{E}[(B _{s}- s B _{1})(B _{t}- t B _{1})]\\
+	& \scriptsize=  \mathbb{E}[B _{s}B _{t} -t B _{s}B _{1} - sB _{t} B _{1} + stB _{1}^{2}]\\
+	& \scriptsize= s -t s - s t + st = s (1 -t)
+\end{align*}
+$$
+
+The distribution of $X _{t} = B _{t} - t B _{1}$
+$$
+\begin{align*}
+	\mathbb{P}_{X _{t}}(x) = \mathbb{P}(X _{t}\leq x) = \mathbb{P}(B _{t} - t B _{1} \leq x)
+\end{align*}
+$$
+
+
+
+
+
+
+

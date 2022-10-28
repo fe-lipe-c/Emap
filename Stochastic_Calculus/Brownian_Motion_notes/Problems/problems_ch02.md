@@ -21,3 +21,10 @@ $$
 
 **a)** $X _{t} = 2 B _{t/4};$
  
+ 
+----------
+**`Problem 2.9`** Let $(B _{t})_{t \geq 0}$ be a $BM ^{1}$.
+
+**a) Find the density of the random vector $B _{s}, B _{t}$ where $0 < s< t< \infty$.** 
+
+**b) (Brownian bridge) Find the conditional density of the vector $(B _{s},B _{t})$, $0 < s < t< 1$ under the condition $B _{1}= 0$, and use this to determine $\mathbb{E} [B _{s}B _{t}| B _{1}=0]$.** 
