@@ -115,9 +115,11 @@ $$
 $$
 
 ----------
-**5. Compute \mathbb{E}[B _{r}B _{s}B _{t}], for 0 < r< s< t.** 
+**5. Compute $\mathbb{E}[B _{r}B _{s}B _{t}]$, for $0 < r< s< t.$** 
 
 >Solution
 
 
 
+----------
+**6. Let $\tau$ be an exponential r.v. with parameter $\lambda$ and assume it is independent of $B$. What is the characteristic function of $B _{\tau}$.** 
