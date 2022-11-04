@@ -57,3 +57,12 @@ $$
   \end{aligned}
 \end{align*}
 $$
+We will use the above Markov chain as our proposal. Then, let $X _{0}$ be any starting state, and generate a chain $X _{0}, X _{1},\dots$ as follows. If the chain is currently at state $i$, then: 
+1. Generate a proposal state $j$ according to the proposal chain $P$.
+2. Accept the proposal with probability $a _{ij}=\min \left(\frac{i ^{a}}{j ^{a}},1\right)$. If the proposal is accepted, go to $j$; otherwise, stay at $i$.
+
+$$
+\begin{equation*}
+	a _{}
+\end{equation*}
+$$
