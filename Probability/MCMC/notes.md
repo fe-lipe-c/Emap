@@ -51,8 +51,8 @@ $$
   \begin{aligned} \scriptsize p _{i,j _{(i = M)}}=
   & \scriptsize\begin{cases}
 		0 & \text{,if } j = i+1\\
-		p & \text{,if } j = i-1\\ 
-		1-p & \text{,if } j = i\\
+		1-p & \text{,if } j = i-1\\ 
+		p & \text{,if } j = i\\
   \end{cases} \\[3.3ex]
   \end{aligned}
 \end{align*}
