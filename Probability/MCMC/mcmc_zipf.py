@@ -4,7 +4,7 @@ import numpy as np
 
 
 def proposal(probability, M):
-    """Metroplis-Hastings proposal distribution.
+    """Proposal distribution.
 
      Markov birth-death process with rates (p) of birth and (1-p) of death.
 
@@ -35,6 +35,22 @@ def proposal(probability, M):
     return transition
 
 
-teste = proposal(0.5, 10)
+def acceptance_probability(parameter, current, proposed):
+    """Acceptance probability for proposed transition.
 
-teste
+    Parameters
+    ----------
+    transition : np.array
+        Probability transition function.
+    current : int
+        Current state.
+    proposed : np.array
+        Proposed state.
+
+    Returns
+    -------
+    float
+        Acceptance probability.
+    """
+    acceptance_ratio = (current**parameter) / (proposed**parameter)
+    return np.min([1, acceptance_ratio])
