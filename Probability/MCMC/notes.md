@@ -18,7 +18,7 @@ $$
 4. If the coin lands Heads, accept the proposal (i.e., go to $j$), setting $X _{n +1} = j$. Otherwise, reject the proposal (i.e., stay  at $i$), setting $X _{n+1}= i$.
 
 **Example 12.1.3. (Zipf distribution simulation)**
-Let $M \geq 2$ be an integer. An r.v. $X$ has the Zipf distribution with parameter $a>0$if its PMF is 
+Let $M \geq 2$ be an integer. An r.v. $X$ has the Zipf distribution with parameter $a>0$ if its PMF is 
 $$
 \begin{equation*}
 	\mathbb{P}(X = k) = \frac{\frac{1}{k ^{a}}}{\sum_{j=1}^{M}\left(\frac{1}{j ^{a}}\right)}.
@@ -61,8 +61,11 @@ We will use the above Markov chain as our proposal. Then, let $X _{0}$ be any st
 1. Generate a proposal state $j$ according to the proposal chain $P$.
 2. Accept the proposal with probability $a _{ij}=\min \left(\frac{i ^{a}}{j ^{a}},1\right)$. If the proposal is accepted, go to $j$; otherwise, stay at $i$.
 
-$$
-\begin{equation*}
-	a _{}
-\end{equation*}
-$$
+**Example 12.1.4 (Beta Simulation)** 
+Suppose that we want to generate $W \sim Beta (a,b)$.
+
+**(a)** How can we generate $W$ exactly if $a$ and $b$ are positive integers?
+
+**(b)** How can we generate $W$ which is approximately $Beta (a,b)$ if $a$ and $b$ are any positive real numbers, with the help of a Markov chain on the state space $(0,1)$.
+
+`Solution`
