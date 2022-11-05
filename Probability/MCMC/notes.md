@@ -69,3 +69,13 @@ Suppose that we want to generate $W \sim Beta (a,b)$.
 **(b)** How can we generate $W$ which is approximately $Beta (a,b)$ if $a$ and $b$ are any positive real numbers, with the help of a Markov chain on the state space $(0,1)$.
 
 `Solution`
+
+**(a)** If $X \sim Gamma (a,1)$ and $Y \sim Gamma (b,1)$ are independent, then $\frac{X}{X+Y} \sim Beta (a,b)$. So if we can simulate the Gamma distribution, then we can simulate the Beta distribution.
+
+**(b)** Let's use the Metropolis-Hastings algorithm. A simpler proposal chain we have available consists of independent $\mathcal{U}(0,1)$ r.v.s. That is, the proposed state on the interval $(0,1)$ is always a fresh $\mathcal{U}(0,1)$, independent of the current state. The resulting Metropolis-Hastings chain is called an independence sampler.
+
+Let $W _{0}$ be any starting state, and generate a chain $W _{0}, W _{1}, \dots$ as follows. If the chain is currently at state $w$, then:
+1. Generate a proposal $u$ by drawing a $\mathcal{U}(0,1)$ r.v.
+2. Accept the proposal with probability $\min \left(\frac{u ^{a-1}(1-u)^{b-1}}{w ^{a-1}(1-w)^{b-1}},1\right)$. If the proposal is accepted, go to $u$; otherwise, stay at $w$.
+3. third
+
