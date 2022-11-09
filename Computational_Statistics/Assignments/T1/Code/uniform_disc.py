@@ -1,8 +1,6 @@
 """Script to draw samples of a uniform distribution on a disc."""
 
 import numpy as np
-import pandas as pd
-import altair as alt
 
 
 def uniform_disc_dist(size, radius, seed=1):
