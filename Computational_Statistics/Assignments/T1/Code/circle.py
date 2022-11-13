@@ -34,4 +34,5 @@ def plot_circle(x, y, radius, color, points):
         )
     )
 
-    chart_circle.save("circle.html")
+    # chart_circle.save("circle.html")
+    return chart_circle
