@@ -10,30 +10,30 @@ from circle import circle, plot_circle
 
 # Part 1, exercise 3
 
-x = [0, 0.5]
-y = [0, 0.5]
-radius = [1, 1]
-color = ["red", "blue"]
-nr_points = 1000
+# x = [0, 0.5]
+# y = [0, 0.5]
+# radius = [1, 1]
+# color = ["red", "blue"]
+# nr_points = 1000
+#
+# chart_0 = plot_circle(x[0], y[0], radius[0], color[0], nr_points)
+# chart_1 = plot_circle(x[1], y[1], radius[1], color[1], nr_points)
+#
+# df_center_0 = pd.DataFrame({"x": x[0], "y": y[0]}, index=[0])
+# chart_center_0 = (
+#     alt.Chart(df_center_0)
+#     .mark_circle(size=100, color="red")
+#     .encode(alt.X("x"), alt.Y("y"))
+# )
+# df_center_1 = pd.DataFrame({"x": x[1], "y": y[1]}, index=[0])
+# chart_center_1 = (
+#     alt.Chart(df_center_1)
+#     .mark_circle(size=100, color="blue")
+#     .encode(alt.X("x"), alt.Y("y"))
+# )
 
-chart_0 = plot_circle(x[0], y[0], radius[0], color[0], nr_points)
-chart_1 = plot_circle(x[1], y[1], radius[1], color[1], nr_points)
-
-df_center_0 = pd.DataFrame({"x": x[0], "y": y[0]}, index=[0])
-chart_center_0 = (
-    alt.Chart(df_center_0)
-    .mark_circle(size=100, color="red")
-    .encode(alt.X("x"), alt.Y("y"))
-)
-df_center_1 = pd.DataFrame({"x": x[1], "y": y[1]}, index=[0])
-chart_center_1 = (
-    alt.Chart(df_center_1)
-    .mark_circle(size=100, color="blue")
-    .encode(alt.X("x"), alt.Y("y"))
-)
-
-chart_t = chart_0 + chart_1 + chart_center_0 + chart_center_1
-chart_t.save("circle_int.html")
+# chart_t = chart_0 + chart_1 + chart_center_0 + chart_center_1
+# chart_t.save("circle_int.html")
 
 # Simulate using the inverse method
 
@@ -66,7 +66,7 @@ true_mean
 R = 10
 sigma_proposal = R / 10
 p_current = np.array([R / 2, 1])
-size = 4000
+size = 40000
 
 MH_sample = [p_current]  # Initialize the chain with the initial state
 for step in range(size):
