@@ -7,6 +7,7 @@ This repo is structured as follows:
 - [X] t1.md: solution to the proposed exercises.
 	- [X] Part I 
 	- [X] Part II
+	
 - [.] Code
 	- [.] MH_uniform_disc.py: contains proposal an acceptance probability. This script is used in notebook.py with the functions needed to run the Metropolis-Hastings method.
 		- [X] Random Walk proposal
