@@ -22,6 +22,6 @@ def mc_mean_distance(p: np.ndarray, q: np.ndarray) -> np.float64:
     return np.mean(np.linalg.norm(p - q, axis=1))
 
 
-def expected_distance(radius):
+def true_expected_distance(radius):
     """Expected distance between two points in a disc of radius R."""
     return (128 / (45 * np.pi)) * radius
