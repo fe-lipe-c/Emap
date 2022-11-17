@@ -5,7 +5,7 @@ your simulation method and compute:
 
 (i) variance
 (ii) bias
-(iii) standard deviation of the mean (MCSE): sqrt(1/N * [S**4(kurtosis-1)+4*S**3*skewness(mean-I)+4 * S**2(mean-I)**2])
+(iii) standard deviation of the mean (MCSE)
 """
 
 import numpy as np
@@ -89,12 +89,7 @@ for radius in R:
 end_time = time.time()
 total_time = end_time - start_time
 
-total_time
-sample_bias[2]
-sample_mse_mcse[3]
-sample_variance[3]
-
-# for eache radius R, make a column for each: bias, variance, mse_mcse
+# for each radius R, make a column for each: bias, variance, mse_mcse
 for i in range(len(R)):
     df = pd.DataFrame(
         {
@@ -117,22 +112,3 @@ for i in range(len(R)):
         df["variance"].mean(),
         df["mse"].mean(),
     ]
-
-
-df_mean_performance
-
-# transform dataframe in latex
-df_mean_performance.to_latex(index=False)
-
-mh_chart = (
-    alt.Chart(df)
-    .mark_circle(size=10)
-    .encode(
-        alt.X("x"),
-        alt.Y("y"),
-    )
-)
-mh_chart.save("MH_uniform_disc.html")
-
-np.random.uniform(0, 2 * np.pi)
-np.array([1, 2]) - 2
