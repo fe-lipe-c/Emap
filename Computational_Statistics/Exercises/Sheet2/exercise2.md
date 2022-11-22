@@ -15,11 +15,14 @@ where $q (x,y) \geq 0$, $\sum_{y \in \mathbb{X}}q (x,y) = 1$ and $0 \leq \alpha 
 
 `Solution`
 
-First we need to prove that $T$ is a Markov transition kernel:
+First we need to prove that $T$ is a Markov transition kernel: $T (x,y) = \mathbb{P}(y|x)$
 $$
 \begin{align*}
 	T(x,y) &= \alpha (x,y)q (x,y) + \left(1 - \sum_{z \in \mathbb{X}} \alpha (x,z)q (x,z)\right)\delta _{x}(y)\\
-	&= \sum_{z \in \mathbb{X}} \delta_{z}(y) \alpha (x,z)q (x,z) +  \left(1 - \sum_{z \in \mathbb{X}} \alpha (x,z)q (x,z)\right) \cdot \sum_{z \in \mathbb{X}} \delta_{x}(z)
+	&= \sum_{z \in \mathbb{X}} \delta_{z}(y) \alpha (x,z)q (x,z) +  \left(1 - \sum_{z \in \mathbb{X}} \alpha (x,z)q (x,z)\right)  \delta_{x}(y)\\
+	&\scriptsize= \mathbb{P}(X^{(t)} = y, \tiny\text{Proposal Accepted}\scriptsize|X^{(t-1)}=x)+ \mathbb{P}(X^{(t)}=y | X^{(t-1)}=x,\tiny\text{Proposal rejected}\scriptsize)\cdot \mathbb{P}(\tiny\text{Proposal rejected}\scriptsize|X^{(t-1)}= x)\\
+	&\scriptsize= \mathbb{P}(X^{(t)} = y, \tiny\text{Proposal Accepted}\scriptsize|X^{(t-1)}=x) + \mathbb{P}(X^{(t)} = y, \tiny\text{Proposal Rejected}\scriptsize|X^{(t-1)}=x)\\
+	&=\mathbb{P}(X^{(t)} = y | X^{(t-1)}=x)
 \end{align*}
 $$
 

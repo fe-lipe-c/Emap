@@ -1,8 +1,33 @@
 # Advanced Simulation - Problem Sheet 2
 
 - [ ] Exercise 1 (Monte Carlo for Gaussians)
-- [ ] Exercise 2 (Metropolis-Hastings)
+	- [ ] 1
+	- [ ] 2
+	- [ ] 3
+	- [ ] 4
+	- [ ] 5
+- [.] Exercise 2 (Metropolis-Hastings)
+	- [X] 1
+	- [ ] 2
+	- [ ] 3
+	- [ ] 4
+	- [ ] 5
+	- [ ] 6
 - [ ] Exercise 3 (Metropolis-Hastings)
+	- [ ] 1
+	- [ ] 2
 - [ ] Exercise 4 (Gibbs Sampler)
+	- [ ] 1
+	- [ ] 2
 - [ ] Exercise 5 (Gibbs Sampler)
+	- [ ] 1
+	- [ ] 2
 - [ ] Simulation question (Normal mixture model - Gibbs sampling)
+	- [ ] 1
+	- [ ] 2
+	- [ ] 3
+	- [ ] 4
+	- [ ] 5
+	- [ ] 6
+	- [ ] 7
+	- [ ] 8
