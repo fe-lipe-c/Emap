@@ -1,4 +1,3 @@
-
 # Advanced Simulation
 ## Problem Sheet 2
 
@@ -12,4 +11,17 @@ $$
 $$
 where $q (x,y) \geq 0$, $\sum_{y \in \mathbb{X}}q (x,y) = 1$ and $0 \leq \alpha (x,y) \leq 1$ for any $x,y \in \mathbb{X}$. $\delta _{x}(y)$ is the Kronecker symbol; i.e. $\delta _{x}(y) = 1$ if $y = x$ and zero otherwise.
 
-1. Explain how you would simulate a Markov chain with transitiion kernel $T$.
+**1. Explain how you would simulate a Markov chain with transition kernel $T$.**
+
+`Solution`
+
+First we need to prove that $T$ is a Markov transition kernel:
+$$
+\begin{align*}
+	T(x,y) &= \alpha (x,y)q (x,y) + \left(1 - \sum_{z \in \mathbb{X}} \alpha (x,z)q (x,z)\right)\delta _{x}(y)\\
+	&= \sum_{z \in \mathbb{X}} \delta_{z}(y) \alpha (x,z)q (x,z) +  \left(1 - \sum_{z \in \mathbb{X}} \alpha (x,z)q (x,z)\right) \cdot \sum_{z \in \mathbb{X}} \delta_{x}(z)
+\end{align*}
+$$
+
+To simulate a Markov chain from $T$, we define a initial distribution $\mu_{0}$ for the first sample $X^{0} \sim \mu_{0}$ and for the rest of the chain, given that we are at the iteration $t$, first we sample $X^{t+1} \sim q (\cdot|x^{(t)})$ and then we sample $U^{(t+1)} \sim \mathcal{U}[0,1]$. If $U^{(t+1)} \leq \alpha (x^{(t)},X^{(t+1)})$, we set $x^{(t+1)} = X^{(t+1)}$, otherwise we set $x^{(t+1)} = x^{(t)}$
+
