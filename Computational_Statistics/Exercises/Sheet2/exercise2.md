@@ -78,4 +78,9 @@ $$
 
 `Solution`
 
-
+First we'll construct a simple example to understand what is happening. Let $\tau_{2} = 4$ and $\tau_{3}= 7$. Then 
+$$
+\begin{align*}
+	\frac{1}{\tau_{3}-1} \sum_{t =1}^{\tau_{3}-1} = \frac{1}{\tau_{3}-1} \left[\phi(X^{(1)}) + \phi(X^{(2)}) + \phi(X^{(\tau_{2}-1)}) + \phi(X^{(\tau_{2})}) + \phi(X^{(5)}) + \phi(X^{(\tau_{3}-1)})\right]\\
+\end{align*}
+$$
