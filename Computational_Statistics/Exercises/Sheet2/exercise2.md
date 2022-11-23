@@ -81,6 +81,41 @@ $$
 First we'll construct a simple example to understand what is happening. Let $\tau_{2} = 4$ and $\tau_{3}= 7$. Then 
 $$
 \begin{align*}
-	\frac{1}{\tau_{3}-1} \sum_{t =1}^{\tau_{3}-1} = \frac{1}{\tau_{3}-1} \left[\phi(X^{(1)}) + \phi(X^{(2)}) + \phi(X^{(\tau_{2}-1)}) + \phi(X^{(\tau_{2})}) + \phi(X^{(5)}) + \phi(X^{(\tau_{3}-1)})\right]\\
+	\frac{1}{\tau_{3}-1} \sum_{t =1}^{\tau_{3}-1}\phi(X^{(t)}) &= \frac{1}{\tau_{3}-1} \left[\phi(X^{(1)}) + \phi(X^{(2)}) + \phi(X^{(\tau_{2}-1)}) + \phi(X^{(\tau_{2})}) + \phi(X^{(5)}) + \phi(X^{(\tau_{3}-1)})\right]\\
+	&= \frac{1}{\tau_{3}-1} \left[\phi(X^{(1)}) + \phi(X^{(1)}) + \phi(X^{(1)}) + \phi(X^{(4)}) + \phi(X^{(4)}) + \phi(X^{(4)})\right]\\
+	&= \frac{1}{\tau_{3}-1} \left[3\phi(X^{(1)}) + 3\phi(X^{(4)})\right]
+	= \frac{1}{\tau_{3}-1} \left[3\phi(Y^{(1)}) + 3\phi(Y^{(2)})\right]\\
+	&= \frac{1}{\tau_{3}-1} \left[(\tau_{2} - \tau_{1})\phi(Y^{(1)}) + (\tau_{3}- \tau_{2})\phi(Y^{(2)})\right]\\
+	&= \frac{1}{\tau_{3}-1} \sum_{t=1}^{3 - 1} (\tau_{t+1}- \tau_{t}) \phi (Y^{(t)})\\
+\end{align*}
+$$
+This expression, for $k=3$, makes sense since is required a waiting time of $\tau_{t+1} - \tau_{t}$ to sample $Y^{(t)}$, and all values before it, and after $Y^{(t-1)}$, are the same.
+
+We'll use induction to prove that
+$$
+\begin{equation*}
+	\frac{1}{\tau_{k}-1}\sum_{t=1}^{\tau_{k}-1}\phi (X^{(t)})= \frac{1}{\tau_{k}-1}\sum_{t=1}^{k-1}(\tau_{t+1}- \tau_{t})\phi (Y^{(t)}).
+\end{equation*}
+$$
+For k=2, 
+$$
+\begin{equation*}
+\frac{1}{\tau_{2}-1}\sum_{t=1}^{\tau_{2}-1}X^{t}= \frac{1}{\tau_{2}-1}(\tau_{2}- 1)\phi(X^{(1)}) = \frac{1}{\tau_{2}-1}(\tau_{2}- \tau_{1})\phi(Y^{(1)}) = \frac{1}{\tau_{2}-1}\sum_{t=1}^{2-1}(\tau_{t+1}- \tau_{t})\phi(Y^{(t)}).
+\end{equation*}
+$$
+
+By the induction hypotheses, we have for $k$ that 
+$$
+\begin{equation*}
+\frac{1}{\tau_{k}-1}\sum_{t=1}^{\tau_{k}-1} \phi(X^{(t)}) = \frac{1}{\tau_{k}-1}\sum_{t=1}^{k-1}(\tau_{t+1}-\tau_{t}) \phi(Y^{(t)})
+\end{equation*}
+$$
+Then, for $k+1$,
+$$
+\begin{align*}
+\frac{1}{\tau_{k+1}-1}\sum_{t=1}^{\tau_{k+1}-1} \phi(X^{(t)}) 
+&= \frac{1}{\tau_{k+1}-1}\left[\sum_{t=1}^{\tau_{k}-1}\phi (X^{(t)}) + \sum_{t = \tau_{k}}^{\tau_{k+1}-1}\phi (X^{(t)})\right]\\
+&= \frac{1}{\tau_{k+1}-1}\left[\sum_{t=1}^{k-1}(\tau_{t+1}- \tau_{t})\phi (Y^{(t)}) + (\tau_{k+1}- \tau_{k})\phi (X^{(\tau_{k})})\right]\\
+&= \frac{1}{\tau_{k+1}-1} \sum_{t=1}^{k}(\tau_{t+1}- \tau_{t}) \phi (Y^{(t)})\\
 \end{align*}
 $$
