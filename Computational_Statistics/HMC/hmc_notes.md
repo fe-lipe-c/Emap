@@ -9,7 +9,7 @@ $$
 \end{equation*}
 $$
 
-The canonical density $\pi (q,p)$ dos not depend on particular choice of parametrization, and we can write it in terms of an invariant Hamiltonian function, $H (q,p)$:
+The canonical density $\pi (q,p)$ does not depend on particular choice of parametrization, and we can write it in terms of an invariant Hamiltonian function, $H (q,p)$:
 $$
 \begin{equation*}
 	\pi (q,p) = e^{-H (q,p)}.
