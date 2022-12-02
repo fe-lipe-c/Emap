@@ -1,6 +1,6 @@
 # MCMC Using Hamiltonian Dynamics
 
-### Hamilton's Equations
+### 1. Hamilton's Equations
 
 Hamiltonian dynamics operates on a d-dimensional position vector, $q$, and a d-dimensional momentum vector, $p$, so that the full state has 2d dimensions. The system is described by a function of $q$ and $p$ known as the Hamiltonian, $H (q,p)$.
 
@@ -57,8 +57,39 @@ $$
 \end{align*}
 $$
 
-#### Properties of Hamiltonian Dynamics
+### 2. Properties of Hamiltonian Dynamics
 
 ##### 1. Reversibility 
 
 The reversibility of Hamiltonian dynamics is important for showing that MCMC updates that use the dynamics leave the desired distribution invariant, since this is most easily proved by showing reversibility of the Markov chain transitions, which requires reversibility of the dynamics used to propose a state.
+
+##### 2. Conservation of the Hamiltonian
+
+A second property of the dynamics is that it keeps the Hamiltonian invariant (i.e. conserved):
+$$
+\begin{equation*}
+	\frac{dH}{dt} = \sum_{i=1}^{d}\left[\frac{dq_{i}}{dt}\frac{\partial H}{\partial q_{i}} + \frac{dp_{i}}{dt}\frac{\partial H}{\partial p_{i}}\right] = \sum_{i=1}^{d}\left[\frac{\partial H}{\partial p_{i}}\frac{\partial H}{\partial q_{i}} - \frac{\partial H}{\partial q_{i}}\frac{\partial H}{\partial p_{i}}\right] = 0. \tag{5.10}
+	\end{equation*}
+$$
+
+##### 3. Volume Preservation
+
+A third fundamental property of Hamiltonian dynamics is that it preserves volume in $(q,p)$ space (a result known as Liouville's theorem). If we apply the mapping $T_{s}$ to the points in some region $R$ of $(q,p)$ space, with volume $V$, the image of $R$ under $T_{s}$ will also have volume $V$.
+
+Divergence of a vector field is the rate of change of the volume of a region in space. In other words, it is the sum of the partial derivatives of the vector field with respect to each of the coordinates.
+
+One way to prove the preservation of volume by Hamiltonian dynamics is to note that the divergence of the vector field defined by Equations (5.1) and (5.2) is zero:
+$$
+\begin{equation*}
+	\sum_{i=1}^{d}\left[\frac{\partial}{\partial q_{i}}\frac{dq_{i}}{dt} + \frac{\partial}{\partial p_{i}}\frac{dp_{i}}{dt}\right] 
+	= \sum_{i=1}^{d}\left[\frac{\partial}{\partial q_{i}}\frac{\partial H}{\partial p_{i}} - \frac{\partial}{\partial p_{i}}\frac{\partial H}{\partial q_{i}}\right] 
+	= \sum_{i=1}^{d}\left[\frac{\partial^{2}H}{\partial q_{i}\partial p_{i}}- \frac{\partial^{2}H}{\partial p_{i}\partial q_{i}}\right] = 0 
+\end{equation*}
+$$
+A vector field with zero divergence can be shown to preserve volume.
+
+##### 4. Symplecticness
+
+### 3. Discretizing Hamilton's Equations - The Leapfrog Method
+
+##### 1. Euler's Method
