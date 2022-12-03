@@ -93,3 +93,62 @@ A vector field with zero divergence can be shown to preserve volume.
 ### 3. Discretizing Hamilton's Equations - The Leapfrog Method
 
 ##### 1. Euler's Method
+
+For Hamilton's equations, this method performs the following steps:
+$$
+\begin{align*}
+	& p_{i}(t + \epsilon) = p_{i}(t) + \epsilon \frac{d p_{i}}{dt}(t)= p_{i}(t) - \epsilon \frac{\partial U}{\partial q_{i}}(q (t)), \tag{5.14}\\
+	& q_{i}(t + \epsilon) = q_{i}(t) + \epsilon \frac{d q_{i}}{dt}(t)= q_{i}(t) + \epsilon \frac{\partial K}{\partial p_{i}}(p (t)). \tag{5.15}
+\end{align*}
+$$
+
+##### 2. Euler's Method Modified
+
+Much better results can be obtained by slightly modifying Euler's method, as follows:
+$$
+\begin{align*}
+	& p_{i}(t + \epsilon) = p_{i}(t) - \epsilon \frac{\partial U}{\partial q_{i}}(q (t)), \tag{5.16}\\
+	& q_{i}(t + \epsilon) = q_{i}(t) + \epsilon \frac{\partial K}{\partial p_{i}}(p (t + \epsilon)). \tag{5.17}
+\end{align*}
+$$
+
+##### 3. The Leapfrog Method	
+
+Even better results can be obtained with the leapfrog method, which works as follows:
+$$
+\begin{align*}
+	&p_{i}(t + \epsilon/2) = p_{i}(t) - (\epsilon/2 )\frac{\partial U}{\partial q_{i}}(q (t)), \tag{5.18}\\
+	&q_{i}(t + \epsilon) = q_{i}(t) + \epsilon \frac{\partial K}{\partial p_{i}}(p (t + \epsilon/2)), \tag{5.19}\\
+	&p_{i}(t + \epsilon) = p_{i}(t + \epsilon/2) - (\epsilon/2 )\frac{\partial U}{\partial q_{i}}(q (t + \epsilon)). \tag{5.20}
+\end{align*}
+$$
+
+### 4. MCMC from Hamiltonian Dynamics
+
+##### Canonical Distributions
+
+Given some energy function, $E (x)$, for the state $x$, of some physical system, the canonical distribution over states has probability or probability density function
+$$
+\begin{equation*}
+	P (x) = \frac{1}{Z}e^{\frac{-E(x)}{T}}, \tag{5.21}
+\end{equation*}
+$$
+where $T$ is the temperature of the system and $Z$ is the normalizing constant.
+
+The Hamiltonian is an energy function for the joint state of 'position' $q$ and 'momentum' $p$, and so defines a joint distribution for them as follows:
+$$
+\begin{equation*}
+	P (q,p) = \frac{1}{Z}e^{\frac{-H(q,p)}{T}}.
+\end{equation*}
+$$
+If $H (q,p) = U (q) + K (p)$, the joint density is 
+$$
+\begin{equation*}
+	P (q,p) = \frac{1}{Z}e^{\frac{-U(q)}{T}}e^{\frac{-K(p)}{T}}.  \tag{5.22}
+\end{equation*}
+$$
+Note that $q$ and $p$ are independent, and each have canonical distributions, with energy functions $U (q)$ and $K (p)$.
+
+##### The Hamiltonian Monte Carlo Algorithm
+
+HMC can be used to sample only from continuous distributions on $\mathbb{R}^{d}$ for which the density function can be evaluated (perhaps up to an unknown normalizing constant). For the moment, we assume that the density is nonzero everywhere (can be relaxed). We must also be able to compute the partial derivatives of the log of the density function.

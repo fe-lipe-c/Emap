@@ -12,7 +12,6 @@ Thus, the solution is:
 q(t) = r*cos(t + a) and p(t) = -r*sin(t + a)
 """
 
-import numpy as np
 import pandas as pd
 import altair as alt
 
@@ -52,4 +51,4 @@ chart_path = (
     )
     .properties(width=800, height=800)
 )
-chart_path.save("path.html")
+chart_path.save("path_03.html")
