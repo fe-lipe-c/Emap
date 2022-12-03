@@ -152,3 +152,18 @@ Note that $q$ and $p$ are independent, and each have canonical distributions, wi
 ##### The Hamiltonian Monte Carlo Algorithm
 
 HMC can be used to sample only from continuous distributions on $\mathbb{R}^{d}$ for which the density function can be evaluated (perhaps up to an unknown normalizing constant). For the moment, we assume that the density is nonzero everywhere (can be relaxed). We must also be able to compute the partial derivatives of the log of the density function.
+
+Current practice with HMC is to use a quadratic kinetic energy, as in Equation 5.5, which leads $p$ to have a zero-mean multivariate Gaussian distribution. Most often, the components of $p$ are specified to be independent, with component $i$ having variance $m_{i}$. The kinetic energy functionproducing this distribution (setting $T = 1$) is
+$$
+\begin{align*}
+	&K (p) = \frac{1}{2}p^{T}M^{-1}p \implies K (p) = \sum_{i=1}^{d}\frac{p^{2}_{i}}{2 m_{i}}, \tag{5.23}
+\end{align*}
+$$
+
+##### The Two Steps of the HMC Algorithm
+
+**1. Momentum sampling** 
+
+In the first step, we sample a momentum $p$ from the distribution $P (p)$, which is a multivariate Gaussian with mean zero and covariance matrix $M$.
+
+**2. Metropolis Update** 
