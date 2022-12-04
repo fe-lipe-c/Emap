@@ -53,7 +53,7 @@ With these forms of $H$ and $K$, Hamilton's equations 5.1 and 5.2 become, for i 
 $$
 \begin{align*}
 	& \frac{d q_{i}}{dt} = [M^{-1}p]_{i}, \tag{5.6}\\
-	& \frac{d p_{i}}{dt} = -\frac{\partial K}{\partial p_{i}}, \tag{5.7}
+	& \frac{d p_{i}}{dt} = -\frac{\partial U}{\partial q_{i}}, \tag{5.7}
 \end{align*}
 $$
 
@@ -167,3 +167,12 @@ $$
 In the first step, we sample a momentum $p$ from the distribution $P (p)$, which is a multivariate Gaussian with mean zero and covariance matrix $M$.
 
 **2. Metropolis Update** 
+
+Starting with the current state, $(q,p)$, Hamiltonian dynamics is simulated for $L$ steps using the leapfrog method, with a stepsize of $\epsilon$. The momentum variables at the end of this $L$-step trajectory are then negated, giving a proposed state $(q^{*},p^{*})$. This proposed state is accepted as the next state of the Markov chain with probability 
+$$
+\begin{equation*}
+	\min \left[1, \frac{e^{- H(q^{*},p^{*})}}{e^{- H(q,p)}} \right] 
+	= \min \left[1, \frac{e^{- K (p^{*}) - U (q^{*})}}{e^{- K (p) - U (q)}} \right]
+	= \min \left[1, \frac{e^{U (q) - U (q^{*})}}{e^{K (p^{*}) - K (p)}} \right]
+\end{equation*}
+$$
