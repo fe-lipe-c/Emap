@@ -9,33 +9,31 @@ standard deviations of one and zero correlation.
 
 import numpy as np
 import pandas as pd
-from utils import HMC, plot_contour, plot_samples
+from utils import HMC  # , plot_contour, plot_samples, plot_path
 
 # Define the target distribution
 mean_target = np.array([0, 0])
-covar_matrix_target = np.array([[1, 0.95], [0.95, 1]])
+covar_matrix_target = np.array([[1, 0.98], [0.98, 1]])
 
 # Define the momentum distribution
 mean_momentum = np.array([0, 0])
 covar_matrix_momentum = np.array([[1, 0], [0, 1]])
 
 # Algorithm hyperparameters
-epsilon = 0.05
-steps = 10
-samples = 30
+epsilon = 0.18
+steps = 20
+samples = 20
 
 # Run the algorithm
-hmc_samples, acceptance_rate = HMC(
+
+hmc = HMC(
     mean_target,
     covar_matrix_target,
     mean_momentum,
     covar_matrix_momentum,
     epsilon,
     steps,
-).sample(samples)
+)
 
-df_hmc_samples = pd.DataFrame(hmc_samples, columns=["x", "y"])
-chart_samples = plot_samples(df_hmc_samples, color="red")
-chart_contour = plot_contour(mean_target, covar_matrix_target, color_scheme="darkgreen")
-total = chart_contour + chart_samples
-total.save("contour_samples.html")
+s, m, h, a = hmc.sample(samples)
+hmc.plot(s, m, h)

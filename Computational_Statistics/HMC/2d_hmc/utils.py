@@ -100,6 +100,8 @@ class HMC:
         """
         # Initialize the samples
         samples = np.zeros((num_samples, 2))
+        momentums = np.zeros((num_samples, 2))
+        hamiltonians = np.zeros(num_samples)
 
         # Initialize the position and momentum
         position = np.random.multivariate_normal(
@@ -119,6 +121,7 @@ class HMC:
             )
             current_position = position
             current_momentum = momentum
+            hamiltonians[i] = self.Hamiltonian(current_position, current_momentum)
 
             # Perform leapfrog steps
             position, momentum = self.leapfrog_steps(position, momentum)
@@ -137,44 +140,112 @@ class HMC:
 
             # Store the sample
             samples[i] = position
+            momentums[i] = momentum
 
         # Compute the acceptance rate
         acceptance_rate /= num_samples
 
-        return samples, acceptance_rate
+        return samples, momentums, hamiltonians, acceptance_rate
 
+    def plot_contour(self, mean, cov, n=100, color_scheme="viridis"):
+        """Create a grid of points at which to evaluate the density of the bivariate Gaussian."""
 
-def plot_contour(mean, cov, n=100, color_scheme="viridis"):
-    """Create a grid of points at which to evaluate the density of the bivariate Gaussian."""
+        x, y = np.mgrid[-4:4:100j, -4:4:100j]
+        positions = np.vstack([x.ravel(), y.ravel()])
 
-    x, y = np.mgrid[-4:4:100j, -4:4:100j]
-    positions = np.vstack([x.ravel(), y.ravel()])
+        density = multivariate_normal.pdf(positions.T, mean, cov)
+        density = pd.DataFrame({"x": x.ravel(), "y": y.ravel(), "z": density})
 
-    density = multivariate_normal.pdf(positions.T, mean, cov)
-    density = pd.DataFrame({"x": x.ravel(), "y": y.ravel(), "z": density})
-
-    chart_contour = (
-        alt.Chart(density)
-        .mark_rect()
-        .encode(
-            alt.X("x:Q", title="x", bin=alt.Bin(maxbins=70)),
-            alt.Y("y:Q", title="y", bin=alt.Bin(maxbins=70)),
-            alt.Color("z:Q", scale=alt.Scale(scheme=color_scheme)),
+        chart_contour = (
+            alt.Chart(density)
+            .mark_rect()
+            .encode(
+                alt.X("x:Q", title="x", bin=alt.Bin(maxbins=70)),
+                alt.Y("y:Q", title="y", bin=alt.Bin(maxbins=70)),
+                alt.Color("z:Q", scale=alt.Scale(scheme=color_scheme)),
+            )
         )
-    )
 
-    return chart_contour
+        return chart_contour
 
-
-def plot_samples(df_samples, color="red"):
-    """Plot the samples."""
-    chart_samples = (
-        alt.Chart(df_samples)
-        .mark_circle(size=25, color=color)
-        .encode(
-            x="x",
-            y="y",
+    def plot_samples(self, df_samples, color="red"):
+        """Plot the samples."""
+        chart_samples = (
+            alt.Chart(df_samples)
+            .mark_circle(size=25, color=color)
+            .encode(
+                x="x",
+                y="y",
+            )
         )
-    )
 
-    return chart_samples
+        return chart_samples
+
+    def plot_path(self, df_samples, color="red"):
+        """Plot the path of the samples."""
+        df_samples["index"] = df_samples.index
+        chart_path = (
+            alt.Chart(df_samples)
+            .mark_line(
+                color=color,
+                point={"filled": False, "fill": "white"},
+                opacity=0.8,
+                strokeDash=[5, 5],
+            )
+            .encode(
+                x="x",
+                y="y",
+                order="index",
+            )
+        )
+
+        return chart_path
+
+    def plot(self, hmc_samples, hmc_momentums, hamiltonians):
+        """Plot distributions for the position and momentum."""
+        # Plot position results
+        df_hmc_samples = pd.DataFrame(hmc_samples, columns=["x", "y"])
+        chart_samples = self.plot_samples(df_hmc_samples, color="red")
+        chart_contour = self.plot_contour(
+            self.mean_target, self.covar_matrix_target, color_scheme="darkgreen"
+        )
+        total_samples = chart_contour + chart_samples
+        # total_samples.save("contour_samples.html")
+
+        chart_path = self.plot_path(df_hmc_samples, color="red")
+        total_path = chart_contour + chart_path
+        # total_path.save("contour_samples_path.html")
+
+        total = total_samples | total_path
+        # total.save("samples_plus_path.html")
+
+        # Plot momentum results
+        df_hmc_momentum = pd.DataFrame(hmc_momentums, columns=["x", "y"])
+        chart_momentum = self.plot_samples(df_hmc_momentum, color="red")
+        chart_contour_momentum = self.plot_contour(
+            self.mean_momentum,
+            self.covar_matrix_momentum,
+            color_scheme="darkgreen",
+        )
+        total_momentum = chart_contour_momentum + chart_momentum
+        # total_momentum.save("contour_momentum.html")
+
+        chart_momentum_path = self.plot_path(df_hmc_momentum, color="red")
+        total_momentum_path = chart_contour_momentum + chart_momentum_path
+        # total_momentum_path.save("contour_momentum_path.html")
+
+        total_m = total_momentum | total_momentum_path
+        # total_m.save("momentum_plus_path.html")
+
+        df_hmc_hamiltonians = pd.DataFrame(hamiltonians, columns=["Hamiltonian"])
+        df_hmc_hamiltonians["Iteration"] = df_hmc_hamiltonians.index
+        chart_ham = (
+            alt.Chart(df_hmc_hamiltonians)
+            .mark_line(point=True)
+            .encode(
+                x="Iteration",
+                y="Hamiltonian",
+            )
+        ).properties(width=800, height=300)
+        chart_m_s = total & total_m & chart_ham
+        chart_m_s.save("momentum_samples.html")
