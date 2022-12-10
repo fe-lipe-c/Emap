@@ -13,16 +13,16 @@ from utils import HMC  # , plot_contour, plot_samples, plot_path
 
 # Define the target distribution
 mean_target = np.array([0, 0])
-covar_matrix_target = np.array([[1, 0.98], [0.98, 1]])
+covar_matrix_target = np.array([[1, 0.95], [0.95, 1]])
 
 # Define the momentum distribution
 mean_momentum = np.array([0, 0])
 covar_matrix_momentum = np.array([[1, 0], [0, 1]])
 
 # Algorithm hyperparameters
-epsilon = 0.18
-steps = 20
-samples = 20
+epsilon = 0.25
+steps = 25
+samples = 800
 
 # Run the algorithm
 

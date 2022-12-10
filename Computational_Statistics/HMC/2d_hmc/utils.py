@@ -172,7 +172,7 @@ class HMC:
         """Plot the samples."""
         chart_samples = (
             alt.Chart(df_samples)
-            .mark_circle(size=25, color=color)
+            .mark_circle(size=55, color=color)
             .encode(
                 x="x",
                 y="y",
@@ -246,6 +246,7 @@ class HMC:
                 x="Iteration",
                 y="Hamiltonian",
             )
-        ).properties(width=800, height=300)
+        ).properties(width=1000, height=500)
         chart_m_s = total & total_m & chart_ham
+        chart_m_s.properties(width=1000, height=500)
         chart_m_s.save("momentum_samples.html")
