@@ -36,7 +36,7 @@ hmc = HMC(
 )
 
 s, m, h, a = hmc.sample(samples)
-hmc.plot(s, m, h)
+# hmc.plot(s, m, h)
 
 import altair as alt
 
@@ -48,6 +48,8 @@ chart_samples = (
     alt.Chart(df_s_last)
     .mark_circle(color="red", size=50)
     .encode(alt.X("index"), alt.Y("last_coordinate"))
-    .properties(width=1000, height=800)
+    .properties(width=800, height=600)
 )
 chart_samples.save("chart_samples.html")
+
+a
