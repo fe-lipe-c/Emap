@@ -32,6 +32,9 @@ class HMC:
         self.step_size = step_size
         self.num_steps = num_steps
 
+        # Save leapfrog path
+        self.leapfrog_path = []
+
     def Hamiltonian(self, position, momentum):
         """Return the Hamiltonian for the bivariate Gaussian distribution.
 
@@ -68,11 +71,13 @@ class HMC:
             position,
         )
 
+        path = []
         for i in range(self.num_steps):
             # Update position
             position = position + self.step_size * np.dot(
                 np.linalg.inv(self.covar_matrix_momentum), momentum
             )
+            path.append(position)
 
             # Update momentum
             if i != self.num_steps - 1:
@@ -87,6 +92,7 @@ class HMC:
                 )
                 momentum = -momentum
 
+        self.leapfrog_path.append(path)
         return position, momentum
 
     def sample(self, num_samples):
